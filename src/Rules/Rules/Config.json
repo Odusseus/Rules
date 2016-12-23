@@ -1,0 +1,5 @@
+﻿{
+   "AppSettings": {
+       "Log.DefaultLevel" :  "Debug"
+    }
+}

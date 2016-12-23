@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Odusseus.Rules.Model.Condition">
+    <Position X="9.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Model\Condition.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Operation" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Odusseus.Rules.Model.Conditions">
+    <Position X="8" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Conditions.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="list" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Odusseus.Rules.Model.Consequent" Collapsed="true">
+    <Position X="6.75" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAACgAAAAA=</HashCode>
+      <FileName>Model\Consequent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Odusseus.Rules.Model.Fact" BaseTypeListCollapsed="true">
+    <Position X="5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAACAAAAAAAAAAQACAAAAAAEAAAAAgAAAgA=</HashCode>
+      <FileName>Model\Fact.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Answer" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Odusseus.Rules.Model.Facts" Collapsed="true">
+    <Position X="3" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Facts.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="list" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Odusseus.Rules.Model.OperatorElements">
+    <Position X="9.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\OperatorElements.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Odusseus.Rules.Model.OperatorElement" BaseTypeListCollapsed="true">
+    <Position X="7.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\OperatorElement.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="symbole" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Odusseus.Rules.Model.Rule">
+    <Position X="6.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAEAAAAAAAAAQAAAAAAAAAACAADAAAAAA=</HashCode>
+      <FileName>Model\Rule.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="conditions" />
+      <Property Name="consequent" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Odusseus.Rules.Model.Rules">
+    <Position X="4" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Rules.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="list" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Interface Name="Odusseus.Rules.Model.IOperation" Collapsed="true">
+    <Position X="7.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\IOperation.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="Odusseus.Rules.Model.Enumeration.Answer" Collapsed="true">
+    <Position X="5" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAQAAAAAAAAAAAAACAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>Model\Enumeration\Answer.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Odusseus.Rules.Model.Enumeration.OperatorSymbole" Collapsed="true">
+    <Position X="7.5" Y="9.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>oAAAAAEAAAAAAAAAAAAAAAAAACAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Enumeration\OperatorSymbole.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Tahoma" Size="10" />
+</ClassDiagram>

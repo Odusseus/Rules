@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{FF64AD2D-902C-4F7C-9806-60C0C959F962}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4D33593A-0791-4ED6-94C4-74EA79A4CC01}"
+	ProjectSection(SolutionItems) = preProject
+		global.json = global.json
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RulesTests", "src\RulesTests\RulesTests\RulesTests.csproj", "{BCBB68FE-E5EA-4671-9FF9-66409FA7AC02}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rules", "src\Rules\Rules\Rules.csproj", "{F5DFC355-D9B5-48BD-8E74-37E7F11C257E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{26370C60-8F41-4FDC-A043-CC325C8C83E5}"
+	ProjectSection(SolutionItems) = preProject
+		Documentation\Evert Arbeidsovereenkomst rules.xml = Documentation\Evert Arbeidsovereenkomst rules.xml
+		Documentation\Readme.html = Documentation\Readme.html
+		Documentation\Rules.pdf = Documentation\Rules.pdf
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BCBB68FE-E5EA-4671-9FF9-66409FA7AC02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCBB68FE-E5EA-4671-9FF9-66409FA7AC02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BCBB68FE-E5EA-4671-9FF9-66409FA7AC02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BCBB68FE-E5EA-4671-9FF9-66409FA7AC02}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5DFC355-D9B5-48BD-8E74-37E7F11C257E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5DFC355-D9B5-48BD-8E74-37E7F11C257E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5DFC355-D9B5-48BD-8E74-37E7F11C257E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5DFC355-D9B5-48BD-8E74-37E7F11C257E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BCBB68FE-E5EA-4671-9FF9-66409FA7AC02} = {FF64AD2D-902C-4F7C-9806-60C0C959F962}
+		{F5DFC355-D9B5-48BD-8E74-37E7F11C257E} = {FF64AD2D-902C-4F7C-9806-60C0C959F962}
+	EndGlobalSection
+EndGlobal

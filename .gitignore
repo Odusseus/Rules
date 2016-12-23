@@ -3,3 +3,7 @@
 ################################################################################
 
 /packages
+/src/Rules/Rules/bin/Debug
+/src/Rules/Rules/obj/Debug
+/src/RulesTests/RulesTests/bin/Debug
+/src/RulesTests/RulesTests/obj/Debug
