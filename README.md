@@ -1,8 +1,8 @@
 # Rules
 
-Basis for a portable Rule engine, see unitests.
+Basis for a portable Rules engine, see unitests.
 
-Exemple 
+Exemples 
 
 1)
 (R1 && R2) => R3
