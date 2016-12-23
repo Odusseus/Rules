@@ -8,6 +8,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4D33593A-0791-4ED6-94C4-74EA79A4CC01}"
 	ProjectSection(SolutionItems) = preProject
 		global.json = global.json
+		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RulesTests", "src\RulesTests\RulesTests\RulesTests.csproj", "{BCBB68FE-E5EA-4671-9FF9-66409FA7AC02}"
