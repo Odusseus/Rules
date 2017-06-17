@@ -20,21 +20,24 @@
             {
                 // Arrange
                 OperatorElements operatorElements = new OperatorElements();
-                Facts facts = this.FactsDataSet();
-                Rules rules = this.RulesDataset1();
-
-                foreach (Rule rule in rules.Rows)
+                Subject group = new Subject
                 {
-                    rule.ConvertLogicToConditions(operatorElements, rules, facts);
+                    Facts = this.FactsDataSet(),
+                    Rules = this.RulesDataset1()
+                };
+
+                foreach (Rule rule in group.Rules.Rows)
+                {
+                    rule.ConvertLogicToConditions(operatorElements, group);
                 }
 
-                Core core = new Core(operatorElements, facts, rules);
+                Core core = new Core(group);
 
                 // Act
                 core.ConvertConditionsToAnswer();
 
                 // Assert
-                core.rules.GetRule("R3").Consequent.Answer.Should().Be(Answer.Yes);
+                core.Group.Rules.GetRule("R3").Answer.Should().Be(Answer.Yes);
             }
 
             // R1 || R2 
@@ -43,22 +46,25 @@
             public void ConvertConditionsToAnswer_RulesDataset2()
             {
                 // Arrange
-                OperatorElements operatorElements = new OperatorElements();
-                Facts facts = this.FactsDataSet();
-                Rules rules = this.RulesDataset2();
-
-                foreach (Rule rule in rules.Rows)
+                OperatorElements operatorElements = new OperatorElements();                
+                Subject group = new Subject
                 {
-                    rule.ConvertLogicToConditions(operatorElements, rules, facts);
+                    Facts = this.FactsDataSet(),
+                    Rules = this.RulesDataset2()
+                };
+
+                foreach (Rule rule in group.Rules.Rows)
+                {
+                    rule.ConvertLogicToConditions(operatorElements, group);
                 }
 
-                Core core = new Core(operatorElements, facts, rules);
+                Core core = new Core(group);
 
                 // Act
                 core.ConvertConditionsToAnswer();
 
                 // Assert
-                core.rules.GetRule("R3").Consequent.Answer.Should().Be(Answer.Yes);
+                core.Group.Rules.GetRule("R3").Answer.Should().Be(Answer.Yes);
             }
 
             // R1 && R2 
@@ -68,21 +74,24 @@
             {
                 // Arrange
                 OperatorElements operatorElements = new OperatorElements();
-                Facts facts = this.FactsDataSet();
-                Rules rules = this.RulesDataset3();
-
-                foreach (Rule rule in rules.Rows)
+                Subject group = new Subject
                 {
-                    rule.ConvertLogicToConditions(operatorElements, rules, facts);
+                    Facts = this.FactsDataSet(),
+                    Rules = this.RulesDataset3()
+                };
+
+            foreach (Rule rule in group.Rules.Rows)
+                {
+                    rule.ConvertLogicToConditions(operatorElements, group);
                 }
 
-                Core core = new Core(operatorElements, facts, rules);
+                Core core = new Core(group);
 
                 // Act
                 core.ConvertConditionsToAnswer();
 
                 // Assert
-                core.rules.GetRule("R3").Consequent.Answer.Should().Be(Answer.No);
+                core.Group.Rules.GetRule("R3").Answer.Should().Be(Answer.No);
             }
 
             // R1 || R2 
@@ -92,21 +101,24 @@
             {
                 // Arrange
                 OperatorElements operatorElements = new OperatorElements();
-                Facts facts = this.FactsDataSet();
-                Rules rules = this.RulesDataset4();
-
-                foreach (Rule rule in rules.Rows)
+                Subject group = new Subject
                 {
-                    rule.ConvertLogicToConditions(operatorElements, rules, facts);
+                    Facts = this.FactsDataSet(),
+                    Rules = this.RulesDataset4()
+                };
+
+                foreach (Rule rule in group.Rules.Rows)
+                {
+                    rule.ConvertLogicToConditions(operatorElements, group);
                 }
 
-                Core core = new Core(operatorElements, facts, rules);
+                Core core = new Core(group);
 
                 // Act
                 core.ConvertConditionsToAnswer();
 
                 // Assert
-                core.rules.GetRule("R3").Consequent.Answer.Should().Be(Answer.Yes);
+                core.Group.Rules.GetRule("R3").Answer.Should().Be(Answer.Yes);
             }
 
             // R1 || R2 
@@ -116,21 +128,24 @@
             {
                 // Arrange
                 OperatorElements operatorElements = new OperatorElements();
-                Facts facts = this.FactsDataSet();
-                Rules rules = this.RulesDataset5();
-
-                foreach (Rule rule in rules.Rows)
+                Subject group = new Subject
                 {
-                    rule.ConvertLogicToConditions(operatorElements, rules, facts);
+                    Facts = this.FactsDataSet(),
+                    Rules = this.RulesDataset5()
+                };
+
+            foreach (Rule rule in group.Rules.Rows)
+                {
+                    rule.ConvertLogicToConditions(operatorElements, group);
                 }
 
-                Core core = new Core(operatorElements, facts, rules);
+                Core core = new Core(group);
 
                 // Act
                 core.ConvertConditionsToAnswer();
 
                 // Assert
-                core.rules.GetRule("R3").Consequent.Answer.Should().Be(Answer.No);
+                core.Group.Rules.GetRule("R3").Answer.Should().Be(Answer.No);
             }
 
         #endregion ConvertConditionsToAnswer
@@ -144,21 +159,25 @@
             {
                 // Arrange
                 OperatorElements operatorElements = new OperatorElements();
-                Facts facts = this.FactsDataSet();
-                Rules rules = this.RulesDatasetUndefined1();
-
-                foreach (Rule rule in rules.Rows)
+            
+                Subject group = new Subject
                 {
-                    rule.ConvertLogicToConditions(operatorElements, rules, facts);
+                    Facts = this.FactsDataSet(),
+                    Rules = this.RulesDatasetUndefined1()
+                };
+
+                foreach (Rule rule in group.Rules.Rows)
+                {
+                    rule.ConvertLogicToConditions(operatorElements, group);
                 }
 
-                Core core = new Core(operatorElements, facts, rules);
+                Core core = new Core(group);
 
                 // Act
                 core.ConvertConditionsToAnswer();
 
                 // Assert
-                core.rules.GetRule("R3").Consequent.Answer.Should().Be(Answer.Unknown, "R2 is unknown");
+                core.Group.Rules.GetRule("R3").Answer.Should().Be(Answer.Unknown, "R2 is unknown");
             }
 
         // R1 && R2 
@@ -168,21 +187,25 @@
         {
             // Arrange
             OperatorElements operatorElements = new OperatorElements();
-            Facts facts = this.FactsDataSet();
-            Rules rules = this.RulesDatasetUndefined2();
-
-            foreach (Rule rule in rules.Rows)
+            
+            Subject group = new Subject
             {
-                rule.ConvertLogicToConditions(operatorElements, rules, facts);
+                Facts = this.FactsDataSet(),
+                Rules = this.RulesDatasetUndefined2()
+            };
+
+            foreach (Rule rule in group.Rules.Rows)
+            {
+                rule.ConvertLogicToConditions(operatorElements, group);
             }
 
-            Core core = new Core(operatorElements, facts, rules);
+            Core core = new Core(group);
 
             // Act
             core.ConvertConditionsToAnswer();
 
             // Assert
-            core.rules.GetRule("R3").Consequent.Answer.Should().Be(Answer.Unknown, "R1 is unknown");
+            core.Group.Rules.GetRule("R3").Answer.Should().Be(Answer.Unknown, "R1 is unknown");
         }
 
         // R1 && R2 
@@ -192,21 +215,25 @@
         {
             // Arrange
             OperatorElements operatorElements = new OperatorElements();
-            Facts facts = this.FactsDataSet();
-            Rules rules = this.RulesDatasetUndefined3();
-
-            foreach (Rule rule in rules.Rows)
+            
+            Subject group = new Subject
             {
-                rule.ConvertLogicToConditions(operatorElements, rules, facts);
+                Facts = this.FactsDataSet(),
+                Rules = this.RulesDatasetUndefined3()
+            };
+
+            foreach (Rule rule in group.Rules.Rows)
+            {
+                rule.ConvertLogicToConditions(operatorElements, group);
             }
 
-            Core core = new Core(operatorElements, facts, rules);
+            Core core = new Core(group);
 
             // Act
             core.ConvertConditionsToAnswer();
 
             // Assert
-            core.rules.GetRule("R3").Consequent.Answer.Should().Be(Answer.Unknown, "R1 and R2 are unknown");
+            core.Group.Rules.GetRule("R3").Answer.Should().Be(Answer.Unknown, "R1 and R2 are unknown");
         }
 
         // R1 || R2 
@@ -216,21 +243,25 @@
         {
             // Arrange
             OperatorElements operatorElements = new OperatorElements();
-            Facts facts = this.FactsDataSet();
-            Rules rules = this.RulesDatasetUndefined4();
-
-            foreach (Rule rule in rules.Rows)
+            
+            Subject group = new Subject
             {
-                rule.ConvertLogicToConditions(operatorElements, rules, facts);
+                Facts = this.FactsDataSet(),
+                Rules = this.RulesDatasetUndefined4()
+            };
+
+            foreach (Rule rule in group.Rules.Rows)
+            {
+                rule.ConvertLogicToConditions(operatorElements, group);
             }
 
-            Core core = new Core(operatorElements, facts, rules);
+            Core core = new Core(group);
 
             // Act
             core.ConvertConditionsToAnswer();
 
             // Assert
-            core.rules.GetRule("R3").Consequent.Answer.Should().Be(Answer.Yes, "R1 is Yes");
+            core.Group.Rules.GetRule("R3").Answer.Should().Be(Answer.Yes, "R1 is Yes");
         }
 
         // R1 || R2 
@@ -240,21 +271,25 @@
         {
             // Arrange
             OperatorElements operatorElements = new OperatorElements();
-            Facts facts = this.FactsDataSet();
-            Rules rules = this.RulesDatasetUndefined5();
-
-            foreach (Rule rule in rules.Rows)
+            
+            Subject group = new Subject
             {
-                rule.ConvertLogicToConditions(operatorElements, rules, facts);
+                Facts = this.FactsDataSet(),
+                Rules = this.RulesDatasetUndefined5()
+            };
+
+            foreach (Rule rule in group.Rules.Rows)
+            {
+                rule.ConvertLogicToConditions(operatorElements, group);
             }
 
-            Core core = new Core(operatorElements, facts, rules);
+            Core core = new Core(group);
 
             // Act
             core.ConvertConditionsToAnswer();
 
             // Assert
-            core.rules.GetRule("R3").Consequent.Answer.Should().Be(Answer.Yes, "R2 is Yes");
+            core.Group.Rules.GetRule("R3").Answer.Should().Be(Answer.Yes, "R2 is Yes");
         }
 
         // R1 || R2 
@@ -264,21 +299,24 @@
         {
             // Arrange
             OperatorElements operatorElements = new OperatorElements();
-            Facts facts = this.FactsDataSet();
-            Rules rules = this.RulesDatasetUndefined6();
-
-            foreach (Rule rule in rules.Rows)
+            Subject group = new Subject
             {
-                rule.ConvertLogicToConditions(operatorElements, rules, facts);
+                Facts = this.FactsDataSet(),
+                Rules = this.RulesDatasetUndefined6()
+            };
+
+            foreach (Rule rule in group.Rules.Rows)
+            {
+                rule.ConvertLogicToConditions(operatorElements, group);
             }
 
-            Core core = new Core(operatorElements, facts, rules);
+            Core core = new Core(group);
 
             // Act
             core.ConvertConditionsToAnswer();
 
             // Assert
-            core.rules.GetRule("R3").Consequent.Answer.Should().Be(Answer.Unknown, "R1 and R2 are Unkown");
+            core.Group.Rules.GetRule("R3").Answer.Should().Be(Answer.Unknown, "R1 and R2 are Unknown");
         }
         #endregion ConvertConditionsToAnswer Undefined
 
@@ -291,21 +329,25 @@
         {
             // Arrange
             OperatorElements operatorElements = new OperatorElements();
-            Facts facts = this.FactsDataSet();
-            Rules rules = this.RulesDatasetDoNotKnow1();
-
-            foreach (Rule rule in rules.Rows)
+            
+            Subject group = new Subject
             {
-                rule.ConvertLogicToConditions(operatorElements, rules, facts);
+                Facts = this.FactsDataSet(),
+                Rules = this.RulesDatasetDoNotKnow1()
+            };
+
+            foreach (Rule rule in group.Rules.Rows)
+            {
+                rule.ConvertLogicToConditions(operatorElements, group);
             }
 
-            Core core = new Core(operatorElements, facts, rules);
+            Core core = new Core(group);
 
             // Act
             core.ConvertConditionsToAnswer();
 
             // Assert
-            core.rules.GetRule("R3").Consequent.Answer.Should().Be(Answer.DoNotKnow, "R2 is DoNotKnow");
+            core.Group.Rules.GetRule("R3").Answer.Should().Be(Answer.DoNotKnow, "R2 is DoNotKnow");
         }
 
         // R1 && R2 
@@ -315,21 +357,24 @@
         {
             // Arrange
             OperatorElements operatorElements = new OperatorElements();
-            Facts facts = this.FactsDataSet();
-            Rules rules = this.RulesDatasetDoNotKnow2();
-
-            foreach (Rule rule in rules.Rows)
+            Subject group = new Subject
             {
-                rule.ConvertLogicToConditions(operatorElements, rules, facts);
+                Facts = this.FactsDataSet(),
+                Rules = this.RulesDatasetDoNotKnow2()
+            };
+
+            foreach (Rule rule in group.Rules.Rows)
+            {
+                rule.ConvertLogicToConditions(operatorElements, group);
             }
 
-            Core core = new Core(operatorElements, facts, rules);
+            Core core = new Core(group);
 
             // Act
             core.ConvertConditionsToAnswer();
 
             // Assert
-            core.rules.GetRule("R3").Consequent.Answer.Should().Be(Answer.DoNotKnow, "R1 is unknown");
+            core.Group.Rules.GetRule("R3").Answer.Should().Be(Answer.DoNotKnow, "R1 is unknown");
         }
 
         // R1 && R2 
@@ -339,21 +384,25 @@
         {
             // Arrange
             OperatorElements operatorElements = new OperatorElements();
-            Facts facts = this.FactsDataSet();
-            Rules rules = this.RulesDatasetDoNotKnow3();
-
-            foreach (Rule rule in rules.Rows)
+            
+            Subject group = new Subject
             {
-                rule.ConvertLogicToConditions(operatorElements, rules, facts);
+                Facts = this.FactsDataSet(),
+                Rules = this.RulesDatasetDoNotKnow3()
+            };
+
+            foreach (Rule rule in group.Rules.Rows)
+            {
+                rule.ConvertLogicToConditions(operatorElements, group);
             }
 
-            Core core = new Core(operatorElements, facts, rules);
+            Core core = new Core(group);
 
             // Act
             core.ConvertConditionsToAnswer();
 
             // Assert
-            core.rules.GetRule("R3").Consequent.Answer.Should().Be(Answer.DoNotKnow, "R1 and R2 are unknown");
+            core.Group.Rules.GetRule("R3").Answer.Should().Be(Answer.DoNotKnow, "R1 and R2 are unknown");
         }
 
         // R1 || R2 
@@ -363,21 +412,25 @@
         {
             // Arrange
             OperatorElements operatorElements = new OperatorElements();
-            Facts facts = this.FactsDataSet();
-            Rules rules = this.RulesDatasetDoNotKnow4();
-
-            foreach (Rule rule in rules.Rows)
+            
+            Subject group = new Subject
             {
-                rule.ConvertLogicToConditions(operatorElements, rules, facts);
+                Facts = this.FactsDataSet(),
+                Rules = this.RulesDatasetDoNotKnow4()
+            };
+
+            foreach (Rule rule in group.Rules.Rows)
+            {
+                rule.ConvertLogicToConditions(operatorElements, group);
             }
 
-            Core core = new Core(operatorElements, facts, rules);
+            Core core = new Core(group);
 
             // Act
             core.ConvertConditionsToAnswer();
 
             // Assert
-            core.rules.GetRule("R3").Consequent.Answer.Should().Be(Answer.Yes, "R1 is Yes");
+            core.Group.Rules.GetRule("R3").Answer.Should().Be(Answer.Yes, "R1 is Yes");
         }
 
         // R1 || R2 
@@ -387,21 +440,25 @@
         {
             // Arrange
             OperatorElements operatorElements = new OperatorElements();
-            Facts facts = this.FactsDataSet();
-            Rules rules = this.RulesDatasetDoNotKnow5();
-
-            foreach (Rule rule in rules.Rows)
+            
+            Subject group = new Subject
             {
-                rule.ConvertLogicToConditions(operatorElements, rules, facts);
+                Facts = this.FactsDataSet(),
+                Rules = this.RulesDatasetDoNotKnow5()
+            };
+
+            foreach (Rule rule in group.Rules.Rows)
+            {
+                rule.ConvertLogicToConditions(operatorElements, group);
             }
 
-            Core core = new Core(operatorElements, facts, rules);
+            Core core = new Core(group);
 
             // Act
             core.ConvertConditionsToAnswer();
 
             // Assert
-            core.rules.GetRule("R3").Consequent.Answer.Should().Be(Answer.Yes, "R2 is Yes");
+            core.Group.Rules.GetRule("R3").Answer.Should().Be(Answer.Yes, "R2 is Yes");
         }
 
         // R1 || R2 
@@ -411,21 +468,25 @@
         {
             // Arrange
             OperatorElements operatorElements = new OperatorElements();
-            Facts facts = this.FactsDataSet();
-            Rules rules = this.RulesDatasetDoNotKnow6();
-
-            foreach (Rule rule in rules.Rows)
+            
+            Subject group = new Subject
             {
-                rule.ConvertLogicToConditions(operatorElements, rules, facts);
+                Facts = this.FactsDataSet(),
+                Rules = this.RulesDatasetDoNotKnow6()
+            };
+
+            foreach (Rule rule in group.Rules.Rows)
+            {
+                rule.ConvertLogicToConditions(operatorElements, group);
             }
 
-            Core core = new Core(operatorElements, facts, rules);
+            Core core = new Core(group);
 
             // Act
             core.ConvertConditionsToAnswer();
 
             // Assert
-            core.rules.GetRule("R3").Consequent.Answer.Should().Be(Answer.DoNotKnow, "R1 and R2 are Unkown");
+            core.Group.Rules.GetRule("R3").Answer.Should().Be(Answer.DoNotKnow, "R1 and R2 are Unknown");
         }
         #endregion ConvertConditionsToAnswer DoNotKnow
 
@@ -438,21 +499,25 @@
             {
                 // Arrange
                 OperatorElements operatorElements = new OperatorElements();
-                Facts facts = this.FactsDataSet();
-                Rules rules = this.RulesDataset0201();
-
-                foreach (Rule rule in rules.Rows)
+                
+                Subject group = new Subject
                 {
-                    rule.ConvertLogicToConditions(operatorElements, rules, facts);
+                    Facts = this.FactsDataSet(),
+                    Rules = this.RulesDataset0201()
+                };
+
+                foreach (Rule rule in group.Rules.Rows)
+                {
+                    rule.ConvertLogicToConditions(operatorElements, group);
                 }
 
-                Core core = new Core(operatorElements, facts, rules);
+                Core core = new Core(group);
 
                 // Act
                 core.ConvertConditionsToAnswer();
 
                 // Assert
-                core.rules.GetRule("R4").Consequent.Answer.Should().Be(Answer.Yes, "( True && True ) && True => True");
+                core.Group.Rules.GetRule("R4").Answer.Should().Be(Answer.Yes, "( True && True ) && True => True");
             }
 
             // R1 && ( R2 && R3 )
@@ -462,21 +527,25 @@
             {
                 // Arrange
                 OperatorElements operatorElements = new OperatorElements();
-                Facts facts = this.FactsDataSet();
-                Rules rules = this.RulesDataset020102();
-
-                foreach (Rule rule in rules.Rows)
+                
+                Subject group = new Subject
                 {
-                    rule.ConvertLogicToConditions(operatorElements, rules, facts);
+                    Facts = this.FactsDataSet(),
+                    Rules = this.RulesDataset020102()
+                };
+
+            foreach (Rule rule in group.Rules.Rows)
+                {
+                    rule.ConvertLogicToConditions(operatorElements, group);
                 }
 
-                Core core = new Core(operatorElements, facts, rules);
+                Core core = new Core(group);
 
                 // Act
                 core.ConvertConditionsToAnswer();
 
                 // Assert
-                core.rules.GetRule("R4").Consequent.Answer.Should().Be(Answer.Yes, "True && ( True && True ) => True");
+                core.Group.Rules.GetRule("R4").Answer.Should().Be(Answer.Yes, "True && ( True && True ) => True");
             }
 
             // ( R1 && R2 ) && R3
@@ -486,21 +555,25 @@
             {
                 // Arrange
                 OperatorElements operatorElements = new OperatorElements();
-                Facts facts = this.FactsDataSet();
-                Rules rules = this.RulesDataset0202();
-
-                foreach (Rule rule in rules.Rows)
+                
+                Subject group = new Subject
                 {
-                    rule.ConvertLogicToConditions(operatorElements, rules, facts);
+                    Facts = this.FactsDataSet(),
+                    Rules = this.RulesDataset0202()
+                };
+
+                foreach (Rule rule in group.Rules.Rows)
+                {
+                    rule.ConvertLogicToConditions(operatorElements, group);
                 }
 
-                Core core = new Core(operatorElements, facts, rules);
+                Core core = new Core(group);
 
                 // Act
                 core.ConvertConditionsToAnswer();
 
                 // Assert
-                core.rules.GetRule("R4").Consequent.Answer.Should().Be(Answer.No, "(True && True) && False => False");
+                core.Group.Rules.GetRule("R4").Answer.Should().Be(Answer.No, "(True && True) && False => False");
             }
 
             // ( R1 && R2 ) && R3
@@ -510,21 +583,25 @@
             {
                 // Arrange
                 OperatorElements operatorElements = new OperatorElements();
-                Facts facts = this.FactsDataSet();
-                Rules rules = this.RulesDataset0203();
-
-                foreach (Rule rule in rules.Rows)
+                
+                Subject group = new Subject
                 {
-                    rule.ConvertLogicToConditions(operatorElements, rules, facts);
+                    Facts = this.FactsDataSet(),
+                    Rules = this.RulesDataset0203()
+                };
+
+                foreach (Rule rule in group.Rules.Rows)
+                {
+                    rule.ConvertLogicToConditions(operatorElements, group);
                 }
 
-                Core core = new Core(operatorElements, facts, rules);
+                Core core = new Core(group);
 
                 // Act
                 core.ConvertConditionsToAnswer();
 
                 // Assert
-                core.rules.GetRule("R4").Consequent.Answer.Should().Be(Answer.No, "( True && False ) && True => False");
+                core.Group.Rules.GetRule("R4").Answer.Should().Be(Answer.No, "( True && False ) && True => False");
             }
 
             // (R1 && R2) && R3
@@ -534,21 +611,25 @@
             {
                 // Arrange
                 OperatorElements operatorElements = new OperatorElements();
-                Facts facts = this.FactsDataSet();
-                Rules rules = this.RulesDataset0204();
-
-                foreach (Rule rule in rules.Rows)
+                
+                Subject group = new Subject
                 {
-                    rule.ConvertLogicToConditions(operatorElements, rules, facts);
+                    Facts = this.FactsDataSet(),
+                    Rules = this.RulesDataset0204()
+                };
+
+                foreach (Rule rule in group.Rules.Rows)
+                {
+                    rule.ConvertLogicToConditions(operatorElements, group);
                 }
 
-                Core core = new Core(operatorElements, facts, rules);
+                Core core = new Core(group);
 
                 // Act
                 core.ConvertConditionsToAnswer();
 
                 // Assert
-                core.rules.GetRule("R4").Consequent.Answer.Should().Be(Answer.No, "(False && True) && True => False");
+                core.Group.Rules.GetRule("R4").Answer.Should().Be(Answer.No, "(False && True) && True => False");
             }
 
         #endregion ConvertConditionsToAnswer Level 3 And
@@ -562,21 +643,25 @@
         {
             // Arrange
             OperatorElements operatorElements = new OperatorElements();
-            Facts facts = this.FactsDataSet();
-            Rules rules = this.RulesDatasetOr0201();
-
-            foreach (Rule rule in rules.Rows)
+            
+            Subject group = new Subject
             {
-                rule.ConvertLogicToConditions(operatorElements, rules, facts);
+                Facts = this.FactsDataSet(),
+                Rules = this.RulesDatasetOr0201()
+            };
+
+            foreach (Rule rule in group.Rules.Rows)
+            {
+                rule.ConvertLogicToConditions(operatorElements, group);
             }
 
-            Core core = new Core(operatorElements, facts, rules);
+            Core core = new Core(group);
 
             // Act
             core.ConvertConditionsToAnswer();
 
             // Assert
-            core.rules.GetRule("R4").Consequent.Answer.Should().Be(Answer.Yes, "(True || True) || True => True");
+            core.Group.Rules.GetRule("R4").Answer.Should().Be(Answer.Yes, "(True || True) || True => True");
         }
 
         // R1 || ( R2 || R3 )
@@ -586,21 +671,25 @@
         {
             // Arrange
             OperatorElements operatorElements = new OperatorElements();
-            Facts facts = this.FactsDataSet();
-            Rules rules = this.RulesDatasetOr020102();
-
-            foreach (Rule rule in rules.Rows)
+            
+            Subject group = new Subject
             {
-                rule.ConvertLogicToConditions(operatorElements, rules, facts);
+                Facts = this.FactsDataSet(),
+                Rules = this.RulesDatasetOr020102()
+            };
+
+            foreach (Rule rule in group.Rules.Rows)
+            {
+                rule.ConvertLogicToConditions(operatorElements, group);
             }
 
-            Core core = new Core(operatorElements, facts, rules);
+            Core core = new Core(group);
 
             // Act
             core.ConvertConditionsToAnswer();
 
             // Assert
-            core.rules.GetRule("R4").Consequent.Answer.Should().Be(Answer.Yes, "True || ( True || True ) => True");
+            core.Group.Rules.GetRule("R4").Answer.Should().Be(Answer.Yes, "True || ( True || True ) => True");
         }
 
         // ( R1 || R2 ) || R3
@@ -610,21 +699,25 @@
         {
             // Arrange
             OperatorElements operatorElements = new OperatorElements();
-            Facts facts = this.FactsDataSet();
-            Rules rules = this.RulesDatasetOr0202();
-
-            foreach (Rule rule in rules.Rows)
+            
+            Subject group = new Subject
             {
-                rule.ConvertLogicToConditions(operatorElements, rules, facts);
+                Facts = this.FactsDataSet(),
+                Rules = this.RulesDatasetOr0202()
+            };
+
+            foreach (Rule rule in group.Rules.Rows)
+            {
+                rule.ConvertLogicToConditions(operatorElements, group);
             }
 
-            Core core = new Core(operatorElements, facts, rules);
+            Core core = new Core(group);
 
             // Act
             core.ConvertConditionsToAnswer();
 
             // Assert
-            core.rules.GetRule("R4").Consequent.Answer.Should().Be(Answer.Yes, "(True || True) || False => True");
+            core.Group.Rules.GetRule("R4").Answer.Should().Be(Answer.Yes, "(True || True) || False => True");
         }
 
         // ( R1 || R2 ) || R3
@@ -634,21 +727,25 @@
         {
             // Arrange
             OperatorElements operatorElements = new OperatorElements();
-            Facts facts = this.FactsDataSet();
-            Rules rules = this.RulesDatasetOr0203();
-
-            foreach (Rule rule in rules.Rows)
+            
+            Subject group = new Subject
             {
-                rule.ConvertLogicToConditions(operatorElements, rules, facts);
+                Facts = this.FactsDataSet(),
+                Rules = this.RulesDatasetOr0203()
+            };
+
+            foreach (Rule rule in group.Rules.Rows)
+            {
+                rule.ConvertLogicToConditions(operatorElements, group);
             }
 
-            Core core = new Core(operatorElements, facts, rules);
+            Core core = new Core(group);
 
             // Act
             core.ConvertConditionsToAnswer();
 
             // Assert
-            core.rules.GetRule("R4").Consequent.Answer.Should().Be(Answer.Yes, "( True || False ) || True => True");
+            core.Group.Rules.GetRule("R4").Answer.Should().Be(Answer.Yes, "( True || False ) || True => True");
         }
 
         // (R1 || R2) || R3
@@ -658,21 +755,25 @@
         {
             // Arrange
             OperatorElements operatorElements = new OperatorElements();
-            Facts facts = this.FactsDataSet();
-            Rules rules = this.RulesDatasetOr0204();
-
-            foreach (Rule rule in rules.Rows)
+            
+            Subject group = new Subject
             {
-                rule.ConvertLogicToConditions(operatorElements, rules, facts);
+                Facts = this.FactsDataSet(),
+                Rules = this.RulesDatasetOr0204()
+            };
+
+            foreach (Rule rule in group.Rules.Rows)
+            {
+                rule.ConvertLogicToConditions(operatorElements, group);
             }
 
-            Core core = new Core(operatorElements, facts, rules);
+            Core core = new Core(group);
 
             // Act
             core.ConvertConditionsToAnswer();
 
             // Assert
-            core.rules.GetRule("R4").Consequent.Answer.Should().Be(Answer.Yes, "(False || True) || True => True");
+            core.Group.Rules.GetRule("R4").Answer.Should().Be(Answer.Yes, "(False || True) || True => True");
         }
 
         #endregion ConvertConditionsToAnswer Level 3 Or
@@ -687,21 +788,25 @@
         {
             // Arrange
             OperatorElements operatorElements = new OperatorElements();
-            Facts facts = this.FactsDataSet();
-            Rules rules = this.RulesDatasetOrL0401();
-
-            foreach (Rule rule in rules.Rows)
+            
+            Subject group = new Subject
             {
-                rule.ConvertLogicToConditions(operatorElements, rules, facts);
+                Facts = this.FactsDataSet(),
+                Rules = this.RulesDatasetOrL0401()
+            };
+
+            foreach (Rule rule in group.Rules.Rows)
+            {
+                rule.ConvertLogicToConditions(operatorElements, group);
             }
 
-            Core core = new Core(operatorElements, facts, rules);
+            Core core = new Core(group);
 
             // Act
             core.ConvertConditionsToAnswer();
 
             // Assert
-            core.rules.GetRule("R5").Consequent.Answer.Should().Be(Answer.No, "(R1 || R2) && ( R3 && R4 )");
+            core.Group.Rules.GetRule("R5").Answer.Should().Be(Answer.No, "(R1 || R2) && ( R3 && R4 )");
         }
 
         // (R1 || R2) && ( R3 && R4 )
@@ -711,21 +816,26 @@
         {
             // Arrange
             OperatorElements operatorElements = new OperatorElements();
-            Facts facts = this.FactsDataSet();
-            Rules rules = this.RulesDatasetOrL0402();
-
-            foreach (Rule rule in rules.Rows)
+            
+            Subject group = new Subject
             {
-                rule.ConvertLogicToConditions(operatorElements, rules, facts);
+                Facts = this.FactsDataSet(),
+                Rules = this.RulesDatasetOrL0402()
+            };
+
+
+            foreach (Rule rule in group.Rules.Rows)
+            {
+                rule.ConvertLogicToConditions(operatorElements, group);
             }
 
-            Core core = new Core(operatorElements, facts, rules);
+            Core core = new Core(group);
 
             // Act
             core.ConvertConditionsToAnswer();
 
             // Assert
-            core.rules.GetRule("R5").Consequent.Answer.Should().Be(Answer.Yes, "(False || True) && ( True && True ) => True");
+            core.Group.Rules.GetRule("R5").Answer.Should().Be(Answer.Yes, "(False || True) && ( True && True ) => True");
         }
 
         // (!R1 || !R2) && ( !R3 && !R4 )
@@ -735,21 +845,25 @@
         {
             // Arrange
             OperatorElements operatorElements = new OperatorElements();
-            Facts facts = this.FactsDataSet();
-            Rules rules = this.RulesDatasetOrL0403();
-
-            foreach (Rule rule in rules.Rows)
+            
+            Subject group = new Subject
             {
-                rule.ConvertLogicToConditions(operatorElements, rules, facts);
+                Facts = this.FactsDataSet(),
+                Rules = this.RulesDatasetOrL0403()
+            };
+            
+            foreach (Rule rule in group.Rules.Rows)
+            {
+                rule.ConvertLogicToConditions(operatorElements, group);
             }
 
-            Core core = new Core(operatorElements, facts, rules);
+            Core core = new Core(group);
 
             // Act
             core.ConvertConditionsToAnswer();
 
             // Assert
-            core.rules.GetRule("R5").Consequent.Answer.Should().Be(Answer.Yes, "(True || False) || ( False && False ) => True");
+            core.Group.Rules.GetRule("R5").Answer.Should().Be(Answer.Yes, "(True || False) || ( False && False ) => True");
         }
         #endregion ConvertConditionsToAnswer Level 4
 
@@ -759,40 +873,39 @@
             {
                 Facts facts = new Facts
                 {
-                    Name = "Arbeids- en ontslagrecht",
                     Rows =
-                {
-                    new Fact
                     {
-                        Id = 1,
-                        Name = "F1",
-                        Question = "Is er voor betrokkene sprake van een arbeidsovereenkomst voor onbepaalde tijd?"
-                     },
-                    new Fact
-                    {
-                        Id = 2,
-                        Name = "F2",
-                        Question = "Is er sprake van een arbeidsovereenkomst tussen betrokkene en zijn/haar werkgever?"
-                    },
-                    new Fact
-                    {
-                        Id = 3,
-                        Name = "F3",
-                        Question = "Is het moment van eindigen van de arbeidsovereenkomst bepaald?"
-                    },
-                    new Fact
-                    {
-                        Id = 4,
-                        Name = "F4",
-                        Question = "x?"
-                    },
-                    new Fact
-                    {
-                        Id = 5,
-                        Name = "F5",
-                        Question = "y?"
+                        new Fact
+                        {
+                            Id = 1,
+                            Name = "F1",
+                            Question = "Is er voor betrokkene sprake van een arbeidsovereenkomst voor onbepaalde tijd?"
+                         },
+                        new Fact
+                        {
+                            Id = 2,
+                            Name = "F2",
+                            Question = "Is er sprake van een arbeidsovereenkomst tussen betrokkene en zijn/haar werkgever?"
+                        },
+                        new Fact
+                        {
+                            Id = 3,
+                            Name = "F3",
+                            Question = "Is het moment van eindigen van de arbeidsovereenkomst bepaald?"
+                        },
+                        new Fact
+                        {
+                            Id = 4,
+                            Name = "F4",
+                            Question = "x?"
+                        },
+                        new Fact
+                        {
+                            Id = 5,
+                            Name = "F5",
+                            Question = "y?"
+                        }
                     }
-                }
                 };
                 return facts;
             }
@@ -805,40 +918,27 @@
             {
                 Rules rules = new Rules
                 {
-                    Name = "R1",
                     Rows = {
                     new Rule
                     {
                         Id = 1,
                         Name = "R1",
                         Logic = "F1",
-                        Consequent = new Consequent()
-                        {
-                            Id = 1,
-                            Answer = Answer.Yes
-                        }
+                        Answer = Answer.Yes
                     },
                     new Rule
                     {
                         Id = 2,
                         Name = "R2",
                         Logic = "F2",
-                        Consequent = new Consequent()
-                        {
-                            Id = 2,
-                            Answer = Answer.Yes
-                        }
+                        Answer = Answer.Yes
                     },
                     new Rule
                     {
                         Id = 3,
                         Name = "R3",
                         Logic = "R1 && R2",
-                        Consequent = new Consequent()
-                        {
-                            Id = 3,
-                            Answer = Answer.Unknown
-                        }
+                        Answer = Answer.Unknown
                     }
                   }
                 };
@@ -851,40 +951,27 @@
             {
                 Rules rules = new Rules
                 {
-                    Name = "R1",
                     Rows = {
                     new Rule
                     {
                         Id = 1,
                         Name = "R1",
                         Logic = "F1",
-                        Consequent = new Consequent()
-                        {
-                            Id = 1,
-                            Answer = Answer.Yes
-                        }
+                        Answer = Answer.Yes
                     },
                     new Rule
                     {
                         Id = 2,
                         Name = "R2",
                         Logic = "F2",
-                        Consequent = new Consequent()
-                        {
-                            Id = 2,
-                            Answer = Answer.Yes
-                        }
+                        Answer = Answer.Yes
                     },
                     new Rule
                     {
                         Id = 3,
                         Name = "R3",
                         Logic = "! R1 && R2",
-                        Consequent = new Consequent()
-                        {
-                            Id = 3,
-                            Answer = Answer.Unknown
-                        }
+                        Answer = Answer.Unknown
                     }
                   }
                 };
@@ -897,40 +984,27 @@
             {
                 Rules rules = new Rules
                 {
-                    Name = "R1",
                     Rows = {
                     new Rule
                     {
                         Id = 1,
                         Name = "R1",
                         Logic = "F1",
-                        Consequent = new Consequent()
-                        {
-                            Id = 1,
-                            Answer = Answer.Yes
-                        }
+                        Answer = Answer.Yes
                     },
                     new Rule
                     {
                         Id = 2,
                         Name = "R2",
                         Logic = "F2",
-                        Consequent = new Consequent()
-                        {
-                            Id = 2,
-                            Answer = Answer.Yes
-                        }
+                        Answer = Answer.Yes
                     },
                     new Rule
                     {
                         Id = 3,
                         Name = "R3",
                         Logic = "R1 && ! R2",
-                        Consequent = new Consequent()
-                        {
-                            Id = 3,
-                            Answer = Answer.Unknown
-                        }
+                        Answer = Answer.Unknown
                     }
                   }
                 };
@@ -943,40 +1017,27 @@
             {
                 Rules rules = new Rules
                 {
-                    Name = "R1",
                     Rows = {
                     new Rule
                     {
                         Id = 1,
                         Name = "R1",
                         Logic = "F1",
-                        Consequent = new Consequent()
-                        {
-                            Id = 1,
-                            Answer = Answer.Yes
-                        }
+                        Answer = Answer.Yes
                     },
                     new Rule
                     {
                         Id = 2,
                         Name = "R2",
                         Logic = "F2",
-                        Consequent = new Consequent()
-                        {
-                            Id = 2,
-                            Answer = Answer.Yes
-                        }
+                        Answer = Answer.Yes
                     },
                     new Rule
                     {
                         Id = 3,
                         Name = "R3",
                         Logic = "! R1 && ! R2",
-                        Consequent = new Consequent()
-                        {
-                            Id = 3,
-                            Answer = Answer.Unknown
-                        }
+                        Answer = Answer.Unknown
                     }
                   }
                 };
@@ -989,40 +1050,27 @@
             {
                 Rules rules = new Rules
                 {
-                    Name = "R1",
                     Rows = {
                     new Rule
                     {
                         Id = 1,
                         Name = "R1",
                         Logic = "F1",
-                        Consequent = new Consequent()
-                        {
-                            Id = 1,
-                            Answer = Answer.Yes
-                        }
+                        Answer = Answer.Yes
                     },
                     new Rule
                     {
                         Id = 2,
                         Name = "R2",
                         Logic = "F2",
-                        Consequent = new Consequent()
-                        {
-                            Id = 2,
-                            Answer = Answer.Yes
-                        }
+                        Answer = Answer.Yes
                     },
                     new Rule
                     {
                         Id = 3,
                         Name = "R3",
                         Logic = "R1 || R2",
-                        Consequent = new Consequent()
-                        {
-                            Id = 3,
-                            Answer = Answer.Unknown
-                        }
+                        Answer = Answer.Unknown
                     }
                   }
                 };
@@ -1035,40 +1083,27 @@
             {
                 Rules rules = new Rules
                 {
-                    Name = "R1",
                     Rows = {
                     new Rule
                     {
                         Id = 1,
                         Name = "R1",
                         Logic = "F1",
-                        Consequent = new Consequent()
-                        {
-                            Id = 1,
-                            Answer = Answer.No
-                        }
+                        Answer = Answer.No
                     },
                     new Rule
                     {
                         Id = 2,
                         Name = "R2",
                         Logic = "F2",
-                        Consequent = new Consequent()
-                        {
-                            Id = 2,
-                            Answer = Answer.Yes
-                        }
+                        Answer = Answer.Yes
                     },
                     new Rule
                     {
                         Id = 3,
                         Name = "R3",
                         Logic = "R1 && R2",
-                        Consequent = new Consequent()
-                        {
-                            Id = 3,
-                            Answer = Answer.Unknown
-                        }
+                        Answer = Answer.Unknown
                     }
                   }
                 };
@@ -1081,40 +1116,27 @@
             {
                 Rules rules = new Rules
                 {
-                    Name = "R1",
                     Rows = {
                     new Rule
                     {
                         Id = 1,
                         Name = "R1",
                         Logic = "F1",
-                        Consequent = new Consequent()
-                        {
-                            Id = 1,
-                            Answer = Answer.No
-                        }
+                        Answer = Answer.No
                     },
                     new Rule
                     {
                         Id = 2,
                         Name = "R2",
                         Logic = "F2",
-                        Consequent = new Consequent()
-                        {
-                            Id = 2,
-                            Answer = Answer.Yes
-                        }
+                        Answer = Answer.Yes
                     },
                     new Rule
                     {
                         Id = 3,
                         Name = "R3",
                         Logic = "R1 || R2",
-                        Consequent = new Consequent()
-                        {
-                            Id = 3,
-                            Answer = Answer.Unknown
-                        }
+                        Answer = Answer.Unknown
                     }
                   }
                 };
@@ -1127,40 +1149,27 @@
             {
                 Rules rules = new Rules
                 {
-                    Name = "R1",
                     Rows = {
                     new Rule
                     {
                         Id = 1,
                         Name = "R1",
                         Logic = "F1",
-                        Consequent = new Consequent()
-                        {
-                            Id = 1,
-                            Answer = Answer.No
-                        }
+                        Answer = Answer.No
                     },
                     new Rule
                     {
                         Id = 2,
                         Name = "R2",
                         Logic = "F2",
-                        Consequent = new Consequent()
-                        {
-                            Id = 2,
-                            Answer = Answer.No
-                        }
+                        Answer = Answer.No
                     },
                     new Rule
                     {
                         Id = 3,
                         Name = "R3",
                         Logic = "R1 || R2",
-                        Consequent = new Consequent()
-                        {
-                            Id = 3,
-                            Answer = Answer.Unknown
-                        }
+                        Answer = Answer.Unknown
                     }
                   }
                 };
@@ -1173,40 +1182,27 @@
         {
             Rules rules = new Rules
             {
-                Name = "R1",
                 Rows = {
                     new Rule
                     {
                         Id = 1,
                         Name = "R1",
                         Logic = "F1",
-                        Consequent = new Consequent()
-                        {
-                            Id = 1,
-                            Answer = Answer.Yes
-                        }
+                        Answer = Answer.Yes
                     },
                     new Rule
                     {
                         Id = 2,
                         Name = "R2",
                         Logic = "F2",
-                        Consequent = new Consequent()
-                        {
-                            Id = 2,
-                            Answer = Answer.Unknown
-                        }
+                        Answer = Answer.Unknown
                     },
                     new Rule
                     {
                         Id = 3,
                         Name = "R3",
                         Logic = "R1 && R2",
-                        Consequent = new Consequent()
-                        {
-                            Id = 3,
-                            Answer = Answer.Unknown
-                        }
+                        Answer = Answer.Unknown
                     }
                   }
             };
@@ -1219,40 +1215,27 @@
         {
             Rules rules = new Rules
             {
-                Name = "R1",
                 Rows = {
                     new Rule
                     {
                         Id = 1,
                         Name = "R1",
                         Logic = "F1",
-                        Consequent = new Consequent()
-                        {
-                            Id = 1,
-                            Answer = Answer.Unknown
-                        }
+                        Answer = Answer.Unknown
                     },
                     new Rule
                     {
                         Id = 2,
                         Name = "R2",
                         Logic = "F2",
-                        Consequent = new Consequent()
-                        {
-                            Id = 2,
-                            Answer = Answer.Yes
-                        }
+                        Answer = Answer.Yes
                     },
                     new Rule
                     {
                         Id = 3,
                         Name = "R3",
                         Logic = "R1 && R2",
-                        Consequent = new Consequent()
-                        {
-                            Id = 3,
-                            Answer = Answer.Unknown
-                        }
+                        Answer = Answer.Unknown
                     }
                   }
             };
@@ -1265,40 +1248,27 @@
         {
             Rules rules = new Rules
             {
-                Name = "R1",
                 Rows = {
                     new Rule
                     {
                         Id = 1,
                         Name = "R1",
                         Logic = "F1",
-                        Consequent = new Consequent()
-                        {
-                            Id = 1,
-                            Answer = Answer.Unknown
-                        }
+                        Answer = Answer.Unknown
                     },
                     new Rule
                     {
                         Id = 2,
                         Name = "R2",
                         Logic = "F2",
-                        Consequent = new Consequent()
-                        {
-                            Id = 2,
-                            Answer = Answer.Unknown
-                        }
+                        Answer = Answer.Unknown
                     },
                     new Rule
                     {
                         Id = 3,
                         Name = "R3",
                         Logic = "R1 && R2",
-                        Consequent = new Consequent()
-                        {
-                            Id = 3,
-                            Answer = Answer.Unknown
-                        }
+                        Answer = Answer.Unknown
                     }
                   }
             };
@@ -1313,40 +1283,27 @@
         {
             Rules rules = new Rules
             {
-                Name = "R1",
                 Rows = {
                     new Rule
                     {
                         Id = 1,
                         Name = "R1",
                         Logic = "F1",
-                        Consequent = new Consequent()
-                        {
-                            Id = 1,
-                            Answer = Answer.Yes
-                        }
+                        Answer = Answer.Yes
                     },
                     new Rule
                     {
                         Id = 2,
                         Name = "R2",
                         Logic = "F2",
-                        Consequent = new Consequent()
-                        {
-                            Id = 2,
-                            Answer = Answer.Unknown
-                        }
+                        Answer = Answer.Unknown
                     },
                     new Rule
                     {
                         Id = 3,
                         Name = "R3",
                         Logic = "R1 || R2",
-                        Consequent = new Consequent()
-                        {
-                            Id = 3,
-                            Answer = Answer.Unknown
-                        }
+                        Answer = Answer.Unknown
                     }
                   }
             };
@@ -1359,40 +1316,27 @@
         {
             Rules rules = new Rules
             {
-                Name = "R1",
                 Rows = {
                     new Rule
                     {
                         Id = 1,
                         Name = "R1",
                         Logic = "F1",
-                        Consequent = new Consequent()
-                        {
-                            Id = 1,
-                            Answer = Answer.Unknown
-                        }
+                        Answer = Answer.Unknown
                     },
                     new Rule
                     {
                         Id = 2,
                         Name = "R2",
                         Logic = "F2",
-                        Consequent = new Consequent()
-                        {
-                            Id = 2,
-                            Answer = Answer.Yes
-                        }
+                        Answer = Answer.Yes
                     },
                     new Rule
                     {
                         Id = 3,
                         Name = "R3",
                         Logic = "R1 || R2",
-                        Consequent = new Consequent()
-                        {
-                            Id = 3,
-                            Answer = Answer.Unknown
-                        }
+                        Answer = Answer.Unknown
                     }
                   }
             };
@@ -1405,40 +1349,27 @@
         {
             Rules rules = new Rules
             {
-                Name = "R1",
                 Rows = {
                     new Rule
                     {
                         Id = 1,
                         Name = "R1",
                         Logic = "F1",
-                        Consequent = new Consequent()
-                        {
-                            Id = 1,
-                            Answer = Answer.Unknown
-                        }
+                        Answer = Answer.Unknown
                     },
                     new Rule
                     {
                         Id = 2,
                         Name = "R2",
                         Logic = "F2",
-                        Consequent = new Consequent()
-                        {
-                            Id = 2,
-                            Answer = Answer.Unknown
-                        }
+                        Answer = Answer.Unknown
                     },
                     new Rule
                     {
                         Id = 3,
                         Name = "R3",
                         Logic = "R1 || R2",
-                        Consequent = new Consequent()
-                        {
-                            Id = 3,
-                            Answer = Answer.Unknown
-                        }
+                        Answer = Answer.Unknown
                     }
                   }
             };
@@ -1454,40 +1385,27 @@
         {
             Rules rules = new Rules
             {
-                Name = "R1",
                 Rows = {
                     new Rule
                     {
                         Id = 1,
                         Name = "R1",
                         Logic = "F1",
-                        Consequent = new Consequent()
-                        {
-                            Id = 1,
-                            Answer = Answer.Yes
-                        }
+                        Answer = Answer.Yes
                     },
                     new Rule
                     {
                         Id = 2,
                         Name = "R2",
                         Logic = "F2",
-                        Consequent = new Consequent()
-                        {
-                            Id = 2,
-                            Answer = Answer.DoNotKnow
-                        }
+                        Answer = Answer.DoNotKnow
                     },
                     new Rule
                     {
                         Id = 3,
                         Name = "R3",
                         Logic = "R1 && R2",
-                        Consequent = new Consequent()
-                        {
-                            Id = 3,
-                            Answer = Answer.Unknown
-                        }
+                        Answer = Answer.Unknown
                     }
                   }
             };
@@ -1500,40 +1418,27 @@
         {
             Rules rules = new Rules
             {
-                Name = "R1",
                 Rows = {
                     new Rule
                     {
                         Id = 1,
                         Name = "R1",
                         Logic = "F1",
-                        Consequent = new Consequent()
-                        {
-                            Id = 1,
-                            Answer = Answer.DoNotKnow
-                        }
+                        Answer = Answer.DoNotKnow
                     },
                     new Rule
                     {
                         Id = 2,
                         Name = "R2",
                         Logic = "F2",
-                        Consequent = new Consequent()
-                        {
-                            Id = 2,
-                            Answer = Answer.Yes
-                        }
+                        Answer = Answer.Yes
                     },
                     new Rule
                     {
                         Id = 3,
                         Name = "R3",
                         Logic = "R1 && R2",
-                        Consequent = new Consequent()
-                        {
-                            Id = 3,
-                            Answer = Answer.Unknown
-                        }
+                        Answer = Answer.Unknown
                     }
                   }
             };
@@ -1546,40 +1451,27 @@
         {
             Rules rules = new Rules
             {
-                Name = "R1",
                 Rows = {
                     new Rule
                     {
                         Id = 1,
                         Name = "R1",
                         Logic = "F1",
-                        Consequent = new Consequent()
-                        {
-                            Id = 1,
-                            Answer = Answer.DoNotKnow
-                        }
+                        Answer = Answer.DoNotKnow
                     },
                     new Rule
                     {
                         Id = 2,
                         Name = "R2",
                         Logic = "F2",
-                        Consequent = new Consequent()
-                        {
-                            Id = 2,
-                            Answer = Answer.DoNotKnow
-                        }
+                        Answer = Answer.DoNotKnow
                     },
                     new Rule
                     {
                         Id = 3,
                         Name = "R3",
                         Logic = "R1 && R2",
-                        Consequent = new Consequent()
-                        {
-                            Id = 3,
-                            Answer = Answer.Unknown
-                        }
+                        Answer = Answer.Unknown
                     }
                   }
             };
@@ -1594,40 +1486,27 @@
         {
             Rules rules = new Rules
             {
-                Name = "R1",
                 Rows = {
                     new Rule
                     {
                         Id = 1,
                         Name = "R1",
                         Logic = "F1",
-                        Consequent = new Consequent()
-                        {
-                            Id = 1,
-                            Answer = Answer.Yes
-                        }
+                        Answer = Answer.Yes
                     },
                     new Rule
                     {
                         Id = 2,
                         Name = "R2",
                         Logic = "F2",
-                        Consequent = new Consequent()
-                        {
-                            Id = 2,
-                            Answer = Answer.DoNotKnow
-                        }
+                        Answer = Answer.DoNotKnow
                     },
                     new Rule
                     {
                         Id = 3,
                         Name = "R3",
                         Logic = "R1 || R2",
-                        Consequent = new Consequent()
-                        {
-                            Id = 3,
-                            Answer = Answer.Unknown
-                        }
+                        Answer = Answer.Unknown
                     }
                   }
             };
@@ -1640,40 +1519,27 @@
         {
             Rules rules = new Rules
             {
-                Name = "R1",
                 Rows = {
                     new Rule
                     {
                         Id = 1,
                         Name = "R1",
                         Logic = "F1",
-                        Consequent = new Consequent()
-                        {
-                            Id = 1,
-                            Answer = Answer.DoNotKnow
-                        }
+                        Answer = Answer.DoNotKnow
                     },
                     new Rule
                     {
                         Id = 2,
                         Name = "R2",
                         Logic = "F2",
-                        Consequent = new Consequent()
-                        {
-                            Id = 2,
-                            Answer = Answer.Yes
-                        }
+                        Answer = Answer.Yes
                     },
                     new Rule
                     {
                         Id = 3,
                         Name = "R3",
                         Logic = "R1 || R2",
-                        Consequent = new Consequent()
-                        {
-                            Id = 3,
-                            Answer = Answer.Unknown
-                        }
+                        Answer = Answer.Unknown
                     }
                   }
             };
@@ -1686,40 +1552,27 @@
         {
             Rules rules = new Rules
             {
-                Name = "R1",
                 Rows = {
                     new Rule
                     {
                         Id = 1,
                         Name = "R1",
                         Logic = "F1",
-                        Consequent = new Consequent()
-                        {
-                            Id = 1,
-                            Answer = Answer.DoNotKnow
-                        }
+                        Answer = Answer.DoNotKnow
                     },
                     new Rule
                     {
                         Id = 2,
                         Name = "R2",
                         Logic = "F2",
-                        Consequent = new Consequent()
-                        {
-                            Id = 2,
-                            Answer = Answer.DoNotKnow
-                        }
+                        Answer = Answer.DoNotKnow
                     },
                     new Rule
                     {
                         Id = 3,
                         Name = "R3",
                         Logic = "R1 || R2",
-                        Consequent = new Consequent()
-                        {
-                            Id = 3,
-                            Answer = Answer.Unknown
-                        }
+                        Answer = Answer.Unknown
                     }
                   }
             };
@@ -1735,51 +1588,34 @@
             {
                 Rules rules = new Rules
                 {
-                    Name = "R1",
                     Rows = {
                     new Rule
                     {
                         Id = 1,
                         Name = "R1",
                         Logic = "F1",
-                        Consequent = new Consequent()
-                        {
-                            Id = 1,
-                            Answer = Answer.Yes
-                        }
+                        Answer = Answer.Yes
                     },
                     new Rule
                     {
                         Id = 2,
                         Name = "R2",
                         Logic = "F2",
-                        Consequent = new Consequent()
-                        {
-                            Id = 2,
-                            Answer = Answer.Yes
-                        }
+                        Answer = Answer.Yes
                     },
                     new Rule
                     {
                         Id = 3,
                         Name = "R3",
                         Logic = "F3",
-                        Consequent = new Consequent()
-                        {
-                            Id = 3,
-                            Answer = Answer.Yes
-                        }
+                        Answer = Answer.Yes
                     },
                     new Rule
                     {
                         Id = 4,
                         Name = "R4",
                         Logic = "( R1 && R2 ) && R3",
-                        Consequent = new Consequent()
-                        {
-                            Id = 4,
-                            Answer = Answer.Unknown
-                        }
+                        Answer = Answer.Unknown
                     }
                   }
                 };
@@ -1792,51 +1628,34 @@
             {
                 Rules rules = new Rules
                 {
-                    Name = "R1",
                     Rows = {
                     new Rule
                     {
                         Id = 1,
                         Name = "R1",
                         Logic = "F1",
-                        Consequent = new Consequent()
-                        {
-                            Id = 1,
-                            Answer = Answer.Yes
-                        }
+                        Answer = Answer.Yes
                     },
                     new Rule
                     {
                         Id = 2,
                         Name = "R2",
                         Logic = "F2",
-                        Consequent = new Consequent()
-                        {
-                            Id = 2,
-                            Answer = Answer.Yes
-                        }
+                        Answer = Answer.Yes
                     },
                     new Rule
                     {
                         Id = 3,
                         Name = "R3",
                         Logic = "F3",
-                        Consequent = new Consequent()
-                        {
-                            Id = 3,
-                            Answer = Answer.No
-                        }
+                        Answer = Answer.No
                     },
                     new Rule
                     {
                         Id = 4,
                         Name = "R4",
                         Logic = "( R1 && R2 ) && R3",
-                        Consequent = new Consequent()
-                        {
-                            Id = 4,
-                            Answer = Answer.Unknown
-                        }
+                        Answer = Answer.Unknown
                     }
                   }
                 };
@@ -1849,51 +1668,34 @@
             {
                 Rules rules = new Rules
                 {
-                    Name = "R1",
                     Rows = {
                     new Rule
                     {
                         Id = 1,
                         Name = "R1",
                         Logic = "F1",
-                        Consequent = new Consequent()
-                        {
-                            Id = 1,
-                            Answer = Answer.Yes
-                        }
+                        Answer = Answer.Yes
                     },
                     new Rule
                     {
                         Id = 2,
                         Name = "R2",
                         Logic = "F2",
-                        Consequent = new Consequent()
-                        {
-                            Id = 2,
-                            Answer = Answer.No
-                        }
+                        Answer = Answer.No
                     },
                     new Rule
                     {
                         Id = 3,
                         Name = "R3",
                         Logic = "F3",
-                        Consequent = new Consequent()
-                        {
-                            Id = 3,
-                            Answer = Answer.No
-                        }
+                        Answer = Answer.No
                     },
                     new Rule
                     {
                         Id = 4,
                         Name = "R4",
                         Logic = "( R1 && R2 ) && R3",
-                        Consequent = new Consequent()
-                        {
-                            Id = 4,
-                            Answer = Answer.Unknown
-                        }
+                        Answer = Answer.Unknown
                     }
                   }
                 };
@@ -1906,51 +1708,34 @@
             {
                 Rules rules = new Rules
                 {
-                    Name = "R1",
                     Rows = {
                     new Rule
                     {
                         Id = 1,
                         Name = "R1",
                         Logic = "F1",
-                        Consequent = new Consequent()
-                        {
-                            Id = 1,
-                            Answer = Answer.Yes
-                        }
+                        Answer = Answer.Yes
                     },
                     new Rule
                     {
                         Id = 2,
                         Name = "R2",
                         Logic = "F2",
-                        Consequent = new Consequent()
-                        {
-                            Id = 2,
-                            Answer = Answer.Yes
-                        }
+                        Answer = Answer.Yes
                     },
                     new Rule
                     {
                         Id = 3,
                         Name = "R3",
                         Logic = "F3",
-                        Consequent = new Consequent()
-                        {
-                            Id = 3,
-                            Answer = Answer.Yes
-                        }
+                        Answer = Answer.Yes
                     },
                     new Rule
                     {
                         Id = 4,
                         Name = "R4",
                         Logic = "( R1 && R2 ) && R3",
-                        Consequent = new Consequent()
-                        {
-                            Id = 4,
-                            Answer = Answer.Unknown
-                        }
+                        Answer = Answer.Unknown
                     }
                   }
                 };
@@ -1963,51 +1748,34 @@
             {
                 Rules rules = new Rules
                 {
-                    Name = "R1",
                     Rows = {
                     new Rule
                     {
                         Id = 1,
                         Name = "R1",
                         Logic = "F1",
-                        Consequent = new Consequent()
-                        {
-                            Id = 1,
-                            Answer = Answer.Yes
-                        }
+                        Answer = Answer.Yes
                     },
                     new Rule
                     {
                         Id = 2,
                         Name = "R2",
                         Logic = "F2",
-                        Consequent = new Consequent()
-                        {
-                            Id = 2,
-                            Answer = Answer.Yes
-                        }
+                        Answer = Answer.Yes
                     },
                     new Rule
                     {
                         Id = 3,
                         Name = "R3",
                         Logic = "F3",
-                        Consequent = new Consequent()
-                        {
-                            Id = 3,
-                            Answer = Answer.Yes
-                        }
+                        Answer = Answer.Yes
                     },
                     new Rule
                     {
                         Id = 4,
                         Name = "R4",
                         Logic = "R1 && ( R2 && R3 )",
-                        Consequent = new Consequent()
-                        {
-                            Id = 4,
-                            Answer = Answer.Unknown
-                        }
+                        Answer = Answer.Unknown
                     }
                   }
                 };
@@ -2020,51 +1788,34 @@
             {
                 Rules rules = new Rules
                 {
-                    Name = "R1",
                     Rows = {
                     new Rule
                     {
                         Id = 1,
                         Name = "R1",
                         Logic = "F1",
-                        Consequent = new Consequent()
-                        {
-                            Id = 1,
-                            Answer = Answer.Yes
-                        }
+                        Answer = Answer.Yes
                     },
                     new Rule
                     {
                         Id = 2,
                         Name = "R2",
                         Logic = "F2",
-                        Consequent = new Consequent()
-                        {
-                            Id = 2,
-                            Answer = Answer.Yes
-                        }
+                        Answer = Answer.Yes
                     },
                     new Rule
                     {
                         Id = 3,
                         Name = "R3",
                         Logic = "F3",
-                        Consequent = new Consequent()
-                        {
-                            Id = 3,
-                            Answer = Answer.No
-                        }
+                        Answer = Answer.No
                     },
                     new Rule
                     {
                         Id = 4,
                         Name = "R4",
                         Logic = "( R1 && R2 ) && R3",
-                        Consequent = new Consequent()
-                        {
-                            Id = 4,
-                            Answer = Answer.Unknown
-                        }
+                        Answer = Answer.Unknown
                     }
                   }
                 };
@@ -2077,51 +1828,34 @@
             {
                 Rules rules = new Rules
                 {
-                    Name = "R1",
                     Rows = {
                     new Rule
                     {
                         Id = 1,
                         Name = "R1",
                         Logic = "F1",
-                        Consequent = new Consequent()
-                        {
-                            Id = 1,
-                            Answer = Answer.Yes
-                        }
+                        Answer = Answer.Yes
                     },
                     new Rule
                     {
                         Id = 2,
                         Name = "R2",
                         Logic = "F2",
-                        Consequent = new Consequent()
-                        {
-                            Id = 2,
-                            Answer = Answer.No
-                        }
+                        Answer = Answer.No
                     },
                     new Rule
                     {
                         Id = 3,
                         Name = "R3",
                         Logic = "F3",
-                        Consequent = new Consequent()
-                        {
-                            Id = 3,
-                            Answer = Answer.Yes
-                        }
+                        Answer = Answer.Yes
                     },
                     new Rule
                     {
                         Id = 4,
                         Name = "R4",
                         Logic = "( R1 && R2 ) && R3",
-                        Consequent = new Consequent()
-                        {
-                            Id = 4,
-                            Answer = Answer.Unknown
-                        }
+                        Answer = Answer.Unknown
                     }
                   }
                 };
@@ -2134,51 +1868,34 @@
             {
                 Rules rules = new Rules
                 {
-                    Name = "R1",
                     Rows = {
                     new Rule
                     {
                         Id = 1,
                         Name = "R1",
                         Logic = "F1",
-                        Consequent = new Consequent()
-                        {
-                            Id = 1,
-                            Answer = Answer.No
-                        }
+                        Answer = Answer.No
                     },
                     new Rule
                     {
                         Id = 2,
                         Name = "R2",
                         Logic = "F2",
-                        Consequent = new Consequent()
-                        {
-                            Id = 2,
-                            Answer = Answer.Yes
-                        }
+                        Answer = Answer.Yes
                     },
                     new Rule
                     {
                         Id = 3,
                         Name = "R3",
                         Logic = "F3",
-                        Consequent = new Consequent()
-                        {
-                            Id = 3,
-                            Answer = Answer.Yes
-                        }
+                        Answer = Answer.Yes
                     },
                     new Rule
                     {
                         Id = 4,
                         Name = "R4",
                         Logic = "( R1 && R2 ) && R3",
-                        Consequent = new Consequent()
-                        {
-                            Id = 4,
-                            Answer = Answer.Unknown
-                        }
+                        Answer = Answer.Unknown
                     }
                   }
                 };
@@ -2193,51 +1910,34 @@
         {
             Rules rules = new Rules
             {
-                Name = "R1",
                 Rows = {
                     new Rule
                     {
                         Id = 1,
                         Name = "R1",
                         Logic = "F1",
-                        Consequent = new Consequent()
-                        {
-                            Id = 1,
-                            Answer = Answer.Yes
-                        }
+                        Answer = Answer.Yes
                     },
                     new Rule
                     {
                         Id = 2,
                         Name = "R2",
                         Logic = "F2",
-                        Consequent = new Consequent()
-                        {
-                            Id = 2,
-                            Answer = Answer.Yes
-                        }
+                        Answer = Answer.Yes
                     },
                     new Rule
                     {
                         Id = 3,
                         Name = "R3",
                         Logic = "F3",
-                        Consequent = new Consequent()
-                        {
-                            Id = 3,
-                            Answer = Answer.Yes
-                        }
+                        Answer = Answer.Yes
                     },
                     new Rule
                     {
                         Id = 4,
                         Name = "R4",
                         Logic = "( R1 || R2 ) || R3",
-                        Consequent = new Consequent()
-                        {
-                            Id = 4,
-                            Answer = Answer.Unknown
-                        }
+                        Answer = Answer.Unknown
                     }
                   }
             };
@@ -2250,51 +1950,34 @@
         {
             Rules rules = new Rules
             {
-                Name = "R1",
                 Rows = {
                     new Rule
                     {
                         Id = 1,
                         Name = "R1",
                         Logic = "F1",
-                        Consequent = new Consequent()
-                        {
-                            Id = 1,
-                            Answer = Answer.Yes
-                        }
+                        Answer = Answer.Yes
                     },
                     new Rule
                     {
                         Id = 2,
                         Name = "R2",
                         Logic = "F2",
-                        Consequent = new Consequent()
-                        {
-                            Id = 2,
-                            Answer = Answer.Yes
-                        }
+                        Answer = Answer.Yes
                     },
                     new Rule
                     {
                         Id = 3,
                         Name = "R3",
                         Logic = "F3",
-                        Consequent = new Consequent()
-                        {
-                            Id = 3,
-                            Answer = Answer.Yes
-                        }
+                        Answer = Answer.Yes
                     },
                     new Rule
                     {
                         Id = 4,
                         Name = "R4",
                         Logic = "R1 || ( R2 || R3 )",
-                        Consequent = new Consequent()
-                        {
-                            Id = 4,
-                            Answer = Answer.Unknown
-                        }
+                        Answer = Answer.Unknown
                     }
                   }
             };
@@ -2307,51 +1990,34 @@
         {
             Rules rules = new Rules
             {
-                Name = "R1",
                 Rows = {
                     new Rule
                     {
                         Id = 1,
                         Name = "R1",
                         Logic = "F1",
-                        Consequent = new Consequent()
-                        {
-                            Id = 1,
-                            Answer = Answer.Yes
-                        }
+                        Answer = Answer.Yes
                     },
                     new Rule
                     {
                         Id = 2,
                         Name = "R2",
                         Logic = "F2",
-                        Consequent = new Consequent()
-                        {
-                            Id = 2,
-                            Answer = Answer.Yes
-                        }
+                        Answer = Answer.Yes
                     },
                     new Rule
                     {
                         Id = 3,
                         Name = "R3",
                         Logic = "F3",
-                        Consequent = new Consequent()
-                        {
-                            Id = 3,
-                            Answer = Answer.No
-                        }
+                        Answer = Answer.No
                     },
                     new Rule
                     {
                         Id = 4,
                         Name = "R4",
                         Logic = "( R1 || R2 ) || R3",
-                        Consequent = new Consequent()
-                        {
-                            Id = 4,
-                            Answer = Answer.Unknown
-                        }
+                        Answer = Answer.Unknown
                     }
                   }
             };
@@ -2364,51 +2030,34 @@
         {
             Rules rules = new Rules
             {
-                Name = "R1",
                 Rows = {
                     new Rule
                     {
                         Id = 1,
                         Name = "R1",
                         Logic = "F1",
-                        Consequent = new Consequent()
-                        {
-                            Id = 1,
-                            Answer = Answer.Yes
-                        }
+                        Answer = Answer.Yes
                     },
                     new Rule
                     {
                         Id = 2,
                         Name = "R2",
                         Logic = "F2",
-                        Consequent = new Consequent()
-                        {
-                            Id = 2,
-                            Answer = Answer.No
-                        }
+                        Answer = Answer.No
                     },
                     new Rule
                     {
                         Id = 3,
                         Name = "R3",
                         Logic = "F3",
-                        Consequent = new Consequent()
-                        {
-                            Id = 3,
-                            Answer = Answer.Yes
-                        }
+                        Answer = Answer.Yes
                     },
                     new Rule
                     {
                         Id = 4,
                         Name = "R4",
                         Logic = "( R1 || R2 ) || R3",
-                        Consequent = new Consequent()
-                        {
-                            Id = 4,
-                            Answer = Answer.Unknown
-                        }
+                        Answer = Answer.Unknown
                     }
                   }
             };
@@ -2421,51 +2070,34 @@
         {
             Rules rules = new Rules
             {
-                Name = "R1",
                 Rows = {
                     new Rule
                     {
                         Id = 1,
                         Name = "R1",
                         Logic = "F1",
-                        Consequent = new Consequent()
-                        {
-                            Id = 1,
-                            Answer = Answer.No
-                        }
+                        Answer = Answer.No
                     },
                     new Rule
                     {
                         Id = 2,
                         Name = "R2",
                         Logic = "F2",
-                        Consequent = new Consequent()
-                        {
-                            Id = 2,
-                            Answer = Answer.Yes
-                        }
+                        Answer = Answer.Yes
                     },
                     new Rule
                     {
                         Id = 3,
                         Name = "R3",
                         Logic = "F3",
-                        Consequent = new Consequent()
-                        {
-                            Id = 3,
-                            Answer = Answer.Yes
-                        }
+                        Answer = Answer.Yes
                     },
                     new Rule
                     {
                         Id = 4,
                         Name = "R4",
                         Logic = "( R1 || R2 ) || R3",
-                        Consequent = new Consequent()
-                        {
-                            Id = 4,
-                            Answer = Answer.Unknown
-                        }
+                        Answer = Answer.Unknown
                     }
                   }
             };
@@ -2481,62 +2113,41 @@
         {
             Rules rules = new Rules
             {
-                Name = "R1",
                 Rows = {
                     new Rule
                     {
                         Id = 1,
                         Name = "R1",
                         Logic = "F1",
-                        Consequent = new Consequent()
-                        {
-                            Id = 1,
-                            Answer = Answer.No
-                        }
+                        Answer = Answer.No
                     },
                     new Rule
                     {
                         Id = 2,
                         Name = "R2",
                         Logic = "F2",
-                        Consequent = new Consequent()
-                        {
-                            Id = 2,
-                            Answer = Answer.Yes
-                        }
+                        Answer = Answer.Yes
                     },
                     new Rule
                     {
                         Id = 3,
                         Name = "R3",
                         Logic = "F3",
-                        Consequent = new Consequent()
-                        {
-                            Id = 3,
-                            Answer = Answer.Yes
-                        }
+                        Answer = Answer.Yes
                     },
                     new Rule
                     {
                         Id = 4,
                         Name = "R4",
                         Logic = "F4",
-                        Consequent = new Consequent()
-                        {
-                            Id = 4,
-                            Answer = Answer.No
-                        }
+                        Answer = Answer.No
                     },
                     new Rule
                     {
                         Id = 5,
                         Name = "R5",
                         Logic = "(R1 || R2) && ( R3 && R4 )",
-                        Consequent = new Consequent()
-                        {
-                            Id = 5,
-                            Answer = Answer.Unknown
-                        }
+                        Answer = Answer.Unknown
                     }
                   }
             };
@@ -2549,62 +2160,41 @@
         {
             Rules rules = new Rules
             {
-                Name = "R1",
                 Rows = {
                     new Rule
                     {
                         Id = 1,
                         Name = "R1",
                         Logic = "F1",
-                        Consequent = new Consequent()
-                        {
-                            Id = 1,
-                            Answer = Answer.No
-                        }
+                        Answer = Answer.No
                     },
                     new Rule
                     {
                         Id = 2,
                         Name = "R2",
                         Logic = "F2",
-                        Consequent = new Consequent()
-                        {
-                            Id = 2,
-                            Answer = Answer.Yes
-                        }
+                        Answer = Answer.Yes
                     },
                     new Rule
                     {
                         Id = 3,
                         Name = "R3",
                         Logic = "F3",
-                        Consequent = new Consequent()
-                        {
-                            Id = 3,
-                            Answer = Answer.Yes
-                        }
+                        Answer = Answer.Yes
                     },
                     new Rule
                     {
                         Id = 4,
                         Name = "R4",
                         Logic = "F4",
-                        Consequent = new Consequent()
-                        {
-                            Id = 4,
-                            Answer = Answer.Yes
-                        }
+                        Answer = Answer.Yes
                     },
                     new Rule
                     {
                         Id = 5,
                         Name = "R5",
                         Logic = "(R1 || R2) && ( R3 && R4 )",
-                        Consequent = new Consequent()
-                        {
-                            Id = 5,
-                            Answer = Answer.Unknown
-                        }
+                        Answer = Answer.Unknown
                     }
                   }
             };
@@ -2617,62 +2207,41 @@
         {
             Rules rules = new Rules
             {
-                Name = "R1",
                 Rows = {
                     new Rule
                     {
                         Id = 1,
                         Name = "R1",
                         Logic = "F1",
-                        Consequent = new Consequent()
-                        {
-                            Id = 1,
-                            Answer = Answer.No
-                        }
+                        Answer = Answer.No
                     },
                     new Rule
                     {
                         Id = 2,
                         Name = "R2",
                         Logic = "F2",
-                        Consequent = new Consequent()
-                        {
-                            Id = 2,
-                            Answer = Answer.Yes
-                        }
+                        Answer = Answer.Yes
                     },
                     new Rule
                     {
                         Id = 3,
                         Name = "R3",
                         Logic = "F3",
-                        Consequent = new Consequent()
-                        {
-                            Id = 3,
-                            Answer = Answer.Yes
-                        }
+                        Answer = Answer.Yes
                     },
                     new Rule
                     {
                         Id = 4,
                         Name = "R4",
                         Logic = "F4",
-                        Consequent = new Consequent()
-                        {
-                            Id = 4,
-                            Answer = Answer.Yes
-                        }
+                        Answer = Answer.Yes
                     },
                     new Rule
                     {
                         Id = 5,
                         Name = "R5",
                         Logic = "(!R1 || !R2) || ( !R3 && !R4 )",
-                        Consequent = new Consequent()
-                        {
-                            Id = 5,
-                            Answer = Answer.Unknown
-                        }
+                        Answer = Answer.Unknown
                     }
                   }
             };

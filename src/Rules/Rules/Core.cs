@@ -4,29 +4,29 @@
     using System.Linq;
     using Odusseus.Rules.Model.Enumeration;
     using Common;
+    using System.Collections.Generic;
 
     public class Core
     {
-        public OperatorElements operatorElements { get; set; }
-        public Facts facts { get; set; }
-        public Rules rules { get; set; }
+        public OperatorElements OperatorElements { get; set; }
 
-        public Core(OperatorElements operatorElements, Facts facts, Rules rules)
+        public Subject Group { get; set; }
+
+        public Core(Subject group)
         {
-            this.operatorElements = operatorElements;
-            this.facts = facts;
-            this.rules = rules;
+            this.OperatorElements = new OperatorElements();
+            this.Group = group;
         }
 
         public void ConvertConditionsToAnswer()
         {
             Log.Write(Level.Info, "Begin ConvertConditionsToAnswer");
 
-            foreach (Rule rule in this.rules.Rows)
+            foreach (Rule rule in this.Group.Rules.Rows)
             {
-                Log.Write(Level.Info, $"Rule={rule.Name} Answer={rule.Consequent.Answer}");
+                Log.Write(Level.Info, $"Rule={rule.Name} Answer={rule.Answer}");
 
-                if (rule.Consequent.Answer != Answer.Unknown)
+                if (rule.Answer != Answer.Unknown)
                 {
                     continue;
                 }
@@ -91,8 +91,7 @@
                         {
                             if (fact.Answer.GetCode() == OperatorSymbole.Undefined)
                             {
-                                var evaluateRule = rules.Rows.Where(r => r.Name == fact.Name && r.Consequent.Answer.GetCode() != OperatorSymbole.Undefined);
-                                //fact.Answer = evaluateRule.Consequent.Answer;
+                                var evaluateRule = this.Group.Rules.Rows.Where(r => r.Name == fact.Name && r.Answer.GetCode() != OperatorSymbole.Undefined);
                             }
 
                             OperatorElement factAnswer = new OperatorElement
@@ -121,7 +120,7 @@
                             {
                                 OperatorElement factAnswer = new OperatorElement
                                 {
-                                    Symbole = conditionRule.Consequent.Answer.GetCode()
+                                    Symbole = conditionRule.Answer.GetCode()
                                 };
 
                                 expression.setOperatorElement(factAnswer);
@@ -158,11 +157,7 @@
                 }
 
                 expressions.Evaluate();
-                rule.Consequent = new Consequent
-                {
-                    Answer = expressions.Answer
-                };
-
+                rule.Answer = expressions.Answer;
             }
         }
 
@@ -237,16 +232,25 @@
             return false;
         }
 
-        public int Evaluate()
+        public ExitCode Evaluate()
         {
-            foreach(Rule rule in this.rules.Rows)
+            this.Group.Answers.Reset();
+
+            foreach (Rule rule in this.Group.Rules.Rows)
             {
-                rule.ConvertLogicToConditions(this.operatorElements,this.rules, this.facts);
+                rule.ConvertLogicToConditions(this.OperatorElements,this.Group);
             }
 
             this.ConvertConditionsToAnswer();
 
-            return 0;
+            var newAnswers = new Dictionary<string, Answer>();
+            foreach (var key in this.Group.Answers.Keys)
+            {
+                newAnswers.Add(key, this.Group.Rules.GetRule(key).Answer);
+            }
+            this.Group.Answers = newAnswers;
+
+            return ExitCode.Success;
         }
 
     }

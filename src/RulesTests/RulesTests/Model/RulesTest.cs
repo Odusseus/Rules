@@ -81,26 +81,17 @@
                     new Rule
                     {
                         Name = "R1",
-                        Consequent = new Consequent
-                        {
-                            Answer = Answer.Unknown
-                        }
+                        Answer = Answer.Unknown
                     },
                     new Rule
                     {
                         Name = "R2",
-                        Consequent = new Consequent
-                        {
-                            Answer = Answer.Yes
-                        }
+                        Answer = Answer.Yes
                     },
                     new Rule
                     {
                         Name = "R3",
-                        Consequent = new Consequent
-                        {
-                            Answer = Answer.Unknown
-                        }
+                        Answer = Answer.Unknown
                     }
                 }
             };
@@ -138,10 +129,7 @@
                     new Rule
                     {
                         Name = "R1",
-                        Consequent = new Consequent
-                                         {
-                                            Answer = Answer.Unknown
-                                         }
+                        Answer = Answer.Unknown
                     }
                 }
             };
@@ -151,7 +139,7 @@
 
             // assert
             result.Should().Be(1, "1 rule is updated");
-            rules.GetRule("R1").Consequent.Answer.Should().Be(Answer.Yes, "Answer is set to Yes");
+            rules.GetRule("R1").Answer.Should().Be(Answer.Yes, "Answer is set to Yes");
         }
 
         [TestMethod]
@@ -165,26 +153,17 @@
                     new Rule
                     {
                         Name = "R1",
-                        Consequent = new Consequent
-                                         {
-                                            Answer = Answer.Unknown
-                                         }
+                        Answer = Answer.Unknown
                     },
                     new Rule
                     {
                         Name = "R2",
-                        Consequent = new Consequent
-                                         {
-                                            Answer = Answer.Unknown
-                                         }
+                        Answer = Answer.Unknown
                     },
                     new Rule
                     {
                         Name = "R1",
-                        Consequent = new Consequent
-                                         {
-                                            Answer = Answer.Unknown
-                                         }
+                        Answer = Answer.Unknown
                     },
                 }
             };

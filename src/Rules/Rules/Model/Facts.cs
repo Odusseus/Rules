@@ -1,11 +1,11 @@
 ﻿namespace Odusseus.Rules.Model
 {
+    using System;
     using System.Collections.Generic;
     using Enumeration;
 
     public class Facts
     {
-        public string Name { get; set; }
         public List<Fact> Rows = new List<Fact>();
 
         public Fact GetFact(string name)

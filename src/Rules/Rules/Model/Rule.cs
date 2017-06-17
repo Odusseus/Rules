@@ -13,6 +13,8 @@
         public int Id { get; set; }
         public string Name { get; set; }
         public string Text { get; set; }
+        public string Source { get; set; }
+        public string Url { get; set; }
         public string Logic {
             get
             {
@@ -42,10 +44,10 @@
         }
 
         public Conditions Conditions { get; set; }
-        public Consequent Consequent { get; set; }
+        public Answer Answer { get; set; }
         public List<string> Messages = new List<string>();
 
-        public void ConvertLogicToConditions(OperatorElements operatorElements, Rules rules, Facts facts)
+        public void ConvertLogicToConditions(OperatorElements operatorElements, Subject group)
         {
             string[] elements = this.Logic.Split();
 
@@ -59,11 +61,11 @@
 
             foreach (string element in elements)
             {
-                    IOperation operation = facts?.Rows.FirstOrDefault<Fact>(x => x.Name == element) as IOperation;
+                    IOperation operation = group.Facts?.Rows.FirstOrDefault<Fact>(x => x.Name == element) as IOperation;
 
                     if (operation == null)
                     {
-                        operation = rules?.Rows.FirstOrDefault<Rule>(x => x.Name == element) as IOperation;
+                        operation = group.Rules?.Rows.FirstOrDefault<Rule>(x => x.Name == element) as IOperation;
                     }
 
                     if (operation == null)
@@ -92,12 +94,12 @@
         public void Reset()
         {
             this.Conditions.Reset();
-            this.Consequent.Reset();
+            this.Answer = Answer.Unknown;
         }
 
         public override string ToString()
         {
-            return $"Rule {this.Name} Answer = {this.Consequent.Answer.ToString()}";
+            return $"Rule {this.Name} Answer = {this.Answer.ToString()}";
         }
     }
 }

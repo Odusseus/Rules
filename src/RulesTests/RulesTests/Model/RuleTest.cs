@@ -62,14 +62,17 @@
             Rule rule = new Rule
             {
                 Logic = "Fact1",
-                Consequent = new Consequent
-                {
-                    Answer = Answer.Unknown
-                }
+                Answer = Answer.Unknown
+            };
+
+            Subject group = new Subject
+            {
+                Facts = facts,
+                Rules = rules
             };
 
             // Act
-            rule.ConvertLogicToConditions(operatorElements, rules, facts);
+            rule.ConvertLogicToConditions(operatorElements, group);
 
             // Assert
             rule.Conditions.Rows.Count.Should().Be(1);
@@ -107,8 +110,14 @@
                 Logic = "Fact3"
             };
 
+            Subject group = new Subject
+            {
+                Facts = facts,
+                Rules = rules
+            };
+
             // Act
-            rule.ConvertLogicToConditions(operatorElements, rules, facts);
+            rule.ConvertLogicToConditions(operatorElements, group);
 
             // Assert
             rule.Conditions.Rows.Count.Should().Be(0);
@@ -143,8 +152,14 @@
                 Logic = "&&"
             };
 
+            Subject group = new Subject
+            {
+                Facts = facts,
+                Rules = rules
+            };
+
             // Act
-            rule.ConvertLogicToConditions(operatorElements, rules, facts);
+            rule.ConvertLogicToConditions(operatorElements, group);
 
             // Assert
             rule.Conditions.Rows.Count.Should().Be(1);
@@ -184,14 +199,17 @@
             Rule rule = new Rule
             {
                 Logic = "Fact1 && Fact2 || Fact3",
-                Consequent = new Consequent
-                {
-                    Answer = Answer.Unknown
-                }
+                Answer = Answer.Unknown
+            };
+
+            Subject group = new Subject
+            {
+                Facts = facts,
+                Rules = rules
             };
 
             // Act
-            rule.ConvertLogicToConditions(operatorElements, rules, facts);
+            rule.ConvertLogicToConditions(operatorElements, group);
 
             // Assert
             rule.Conditions.Rows.Count.Should().Be(5);
@@ -226,15 +244,17 @@
             Rule rule = new Rule
             {
                 Logic = "! ( Fact1 && Fact2 ) || Fact3",
-                Consequent = new Consequent
-                {
-                    Answer = Answer.Unknown
-                }
-                
+                Answer = Answer.Unknown
+            };
+
+            Subject group = new Subject
+            {
+                Facts = facts,
+                Rules = rules
             };
 
             // Act
-            rule.ConvertLogicToConditions(operatorElements, rules, facts);
+            rule.ConvertLogicToConditions(operatorElements, group);
 
             // Assert
             rule.Conditions.Rows.Count.Should().Be(8);

@@ -1,12 +1,12 @@
 ﻿namespace Odusseus.Rules.Model
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using Enumeration;
 
     public class Rules
     {
-        public string Name { get; set; }
         public List<Rule> Rows = new List<Rule>();
 
         public Rule GetRule(string name)
@@ -16,7 +16,7 @@
 
         public List<Rule> GetRulesByAnswer(Answer answer)
         {
-            List<Rule> rules = this.Rows.FindAll(r => r.Consequent.Answer == answer);
+            List<Rule> rules = this.Rows.FindAll(r => r.Answer == answer);
 
             return rules;
         }
@@ -37,7 +37,7 @@
             foreach(Rule rule in rules)
             {
                 set++;
-                rule.Consequent.Answer = answer;
+                rule.Answer = answer;
             }
 
             return set;
